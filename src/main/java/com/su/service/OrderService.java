@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.jaxb.SpringDataJaxb;
 
+import java.util.List;
+
 /**
  *  Order的Service层：用于处理订单相关的业务逻辑
  */
@@ -16,7 +18,7 @@ public interface OrderService {
     /** 查询单个订单 */
     public OrderDTO findOne(String orderId);
 
-    /** 查询订单列表 */
+    /** 查询订单列表：买家的订单 */
     public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
 
     /** 取消订单 */
@@ -27,5 +29,8 @@ public interface OrderService {
 
     /** 支付订单 */
     public OrderDTO pay(OrderDTO orderDTO);
+
+    /** 查询所有订单：卖家使用 */
+    public Page<OrderDTO> findList(Pageable pageable);
 
 }

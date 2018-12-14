@@ -1,10 +1,12 @@
 package com.su.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.su.enums.OrderStatusEnum;
 import com.su.enums.PayStatusEnum;
 import com.su.model.OrderDetail;
+import com.su.utils.EnumUtil;
 import com.su.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
@@ -53,4 +55,18 @@ public class OrderDTO {
      */
 //    private List<OrderDetail> orderDetailList = new ArrayList<>();
     private List<OrderDetail> orderDetailList;
+
+    /**
+     *  增加两个通过枚举的code值获取枚举对象的方法，
+     *  用于处理支付状态和订单状态时，将code值转化为对象描述信息
+     * @JsonIgnore 注解：当把该对象转化成json格式时，会忽略被该注解标注的字段，否则会造成字段冗余
+     */
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum(){
+        return EnumUtil.getEnumByCode(payStatus, PayStatusEnum.class);
+    }
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum(){
+        return EnumUtil.getEnumByCode(orderStatus, OrderStatusEnum.class);
+    }
 }

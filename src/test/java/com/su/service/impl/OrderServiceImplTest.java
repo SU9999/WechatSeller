@@ -93,4 +93,15 @@ public class OrderServiceImplTest {
 
         Assert.assertNotEquals(orderDTO.getPayStatus(), updateOrderDTO.getPayStatus());
     }
+
+    @Test
+    public void findList2(){
+        PageRequest pageRequest = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(pageRequest);
+
+        System.out.println("总页数：" + orderDTOPage.getTotalPages());
+        System.out.println("总记录数：" + orderDTOPage.getTotalElements());
+        System.out.println(orderDTOPage.getContent());
+        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
+    }
 }

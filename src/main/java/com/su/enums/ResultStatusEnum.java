@@ -8,6 +8,7 @@ import javax.persistence.Id;
 @Getter
 public enum ResultStatusEnum {
 
+    SUCCESS(0, "成功"),
     PRODUCT_NOT_EXIST(10, "商品不存在"),
     PRODUCT_QUANTITY_ERROR(11, "商品数量不正确"),
     PRODUCT_STOCK_ERROR(12,"库存不足"),
@@ -21,13 +22,15 @@ public enum ResultStatusEnum {
     CART_EMPTY_ERROR(20,"购物车不能为空"),
     ORDER_OWNER_ERROR(21, "无权访问该订单"),
     WECHAT_MP_ERROR(22, "微信公众账号方面错误"),
-    WECHAT_PAY_NOTIFY_ERROR(23, "微信支付异步通知校验错误");
+    WECHAT_PAY_NOTIFY_ERROR(23, "微信支付异步通知校验错误"),
+    ORDER_CANCEL_SUCCESS(24, "订单取消成功"),
+    ORDER_FINISH_SUCCESS(25, "卖家完成订单成功");
 
 
-    private int code;
+    private Integer code;
     private String msg;
 
-    ResultStatusEnum(int code, String msg) {
+    ResultStatusEnum(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }}
