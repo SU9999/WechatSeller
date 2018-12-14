@@ -1,0 +1,26 @@
+#配置数据库信息
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://172.18.114.90:3306/sell?characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 123456
+  jpa:
+    show-sql: true
+    #表示当对象为空时，不进行json封装
+  jackson:
+    default-property-inclusion: non_null
+  mvc:
+    static-path-pattern: /**/*
+  resources:
+    static-locations: ["classpath:/static/image/", "classpath:/static/api/","classpath:/static/"]
+server:
+  context-path: /sell
+wechat:
+  mpAppId: wxe227becfe60132e2
+  mpAppSecret: 534253ebd7cdae3711f401a3c4b13ecb
+  mchId: 1409146202
+  mchKey: c976503d34ca432c601361f969fd8d85
+  keyPath: /var/weixin_cret/h5.p12
+  #处理异步通知地址
+  notifyUrl: http://localhost:8080/sell/pay/notify
