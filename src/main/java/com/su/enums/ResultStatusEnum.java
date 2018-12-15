@@ -24,7 +24,12 @@ public enum ResultStatusEnum {
     WECHAT_MP_ERROR(22, "微信公众账号方面错误"),
     WECHAT_PAY_NOTIFY_ERROR(23, "微信支付异步通知校验错误"),
     ORDER_CANCEL_SUCCESS(24, "订单取消成功"),
-    ORDER_FINISH_SUCCESS(25, "卖家完成订单成功");
+    ORDER_FINISH_SUCCESS(25, "卖家完成订单成功"),
+    PRODUCT_STATUS_ERROR(26, "商品状态不正确"),
+    ON_SALE_SUCCCESS(27, "上架商品成功"),
+    DOWN_SALE_SUCCCESS(28, "下架商品成功"),
+    PRODUCT_UPDATE_SUCCESS(29, "商品信息修改成功"),
+    CATEGORY_INDEX_SUCCESS(30, "类目修改或新增成功");
 
 
     private Integer code;

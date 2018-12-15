@@ -30,4 +30,10 @@ public interface ProductService {
 
     /** 减库存 */
     public void subStock(List<CartDTO> cartDTOList);
+
+    /** 下架 */
+    public ProductInfo offSale(String productId);
+    /** 上架 */
+    public ProductInfo onSale(String productId);
+
 }

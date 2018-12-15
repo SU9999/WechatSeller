@@ -1,5 +1,6 @@
 package com.su.service.impl;
 
+import com.su.controller.SellerProductController;
 import com.su.dto.CartDTO;
 import com.su.enums.ProductStatusEnum;
 import com.su.enums.ResultStatusEnum;
@@ -79,5 +80,35 @@ public class ProductServiceImpl implements ProductService {
             productInfo.setProductStock(result);
             productInfoRepository.save(productInfo);
         }
+    }
+
+    @Override
+    public ProductInfo offSale(String productId) {
+        ProductInfo productInfo = productInfoRepository.findOne(productId);
+        if (productInfo == null){
+            throw new SellException(ResultStatusEnum.PRODUCT_NOT_EXIST);
+        }
+
+        if (productInfo.getProductStatus() == ProductStatusEnum.DOWN.getCode()){
+            throw new SellException(ResultStatusEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
+        return productInfoRepository.save(productInfo);
+    }
+
+    @Override
+    public ProductInfo onSale(String productId) {
+        ProductInfo productInfo = productInfoRepository.findOne(productId);
+        if (productInfo == null){
+            throw new SellException(ResultStatusEnum.PRODUCT_NOT_EXIST);
+        }
+
+        if (productInfo.getProductStatus() == ProductStatusEnum.UP.getCode()){
+            throw new SellException(ResultStatusEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
+        return productInfoRepository.save(productInfo);
     }
 }

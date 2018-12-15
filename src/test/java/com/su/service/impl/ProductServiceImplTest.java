@@ -77,4 +77,20 @@ public class ProductServiceImplTest {
         List<CartDTO> cartDTOList = Arrays.asList(new CartDTO("abc", 100));
         service.addStock(cartDTOList);
     }
+    
+    @Test
+    public void onSaleTest(){
+        ProductInfo productInfo = service.onSale("123456");
+
+        System.out.println(productInfo);
+        Assert.assertEquals(ProductStatusEnum.UP.getCode(), productInfo.getProductStatus());
+    }
+
+    @Test
+    public void offSaleTest(){
+        ProductInfo productInfo = service.offSale("123456");
+
+        System.out.println(productInfo);
+        Assert.assertEquals(ProductStatusEnum.DOWN.getCode(), productInfo.getProductStatus());
+    }
 }
