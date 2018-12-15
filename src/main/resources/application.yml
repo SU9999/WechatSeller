@@ -14,6 +14,10 @@ spring:
     static-path-pattern: /**/*
   resources:
     static-locations: ["classpath:/static/image/", "classpath:/static/api/","classpath:/static/"]
+    #使用redis做session缓存
+  redis:
+    host: 172.18.114.90
+    port: 6379
 server:
   context-path: /sell
 wechat:

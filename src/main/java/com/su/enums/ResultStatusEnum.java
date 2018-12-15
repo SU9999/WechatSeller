@@ -29,7 +29,10 @@ public enum ResultStatusEnum {
     ON_SALE_SUCCCESS(27, "上架商品成功"),
     DOWN_SALE_SUCCCESS(28, "下架商品成功"),
     PRODUCT_UPDATE_SUCCESS(29, "商品信息修改成功"),
-    CATEGORY_INDEX_SUCCESS(30, "类目修改或新增成功");
+    CATEGORY_INDEX_SUCCESS(30, "类目修改或新增成功"),
+    SELLER_LOGIN_SUCCESS(31, "用户登录成功"),
+    SELLER_REGISTER_SUCCESS(32, "用户注册成功"),
+    SELLER_LOGOUT_SUCCESS(33, "用户注销成功");
 
 
     private Integer code;
