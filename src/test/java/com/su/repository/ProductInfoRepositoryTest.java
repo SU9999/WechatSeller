@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductInfoRepositoryTest {
 
     @Autowired

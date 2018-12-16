@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PayServiceImplTest {
 
     @Autowired

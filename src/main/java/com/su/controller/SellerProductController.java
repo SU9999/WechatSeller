@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -134,8 +136,12 @@ public class SellerProductController {
 
     /**
      *  提交保存新增或更该商品的信息
+     * @CachePut 注解表示每次都会把返回的对象存储到redis缓存中 ，但要求返回的对象必须可序列化
+     * @CacheEvict 注解：表示每次执行都会清除redis缓存中的数据
      */
     @PostMapping("/save")
+//    @CachePut(cacheNames = "product", key = "123")
+    @CacheEvict(cacheNames = "product", key = "123")
     public ModelAndView save(@Valid ProductForm form,
                              BindingResult bindingResult,
                              Map<String, Object> model){

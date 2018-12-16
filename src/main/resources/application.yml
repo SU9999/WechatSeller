@@ -13,11 +13,12 @@ spring:
   mvc:
     static-path-pattern: /**/*
   resources:
-    static-locations: ["classpath:/static/image/", "classpath:/static/api/","classpath:/static/"]
+    static-locations: ["classpath:/static/image/", "classpath:/static/api/","classpath:/static/", "classpath:/static/mp3/"]
     #使用redis做session缓存
   redis:
     host: 172.18.114.90
     port: 6379
+
 server:
   context-path: /sell
 wechat:
@@ -28,3 +29,6 @@ wechat:
   keyPath: /var/weixin_cret/h5.p12
   #处理异步通知地址
   notifyUrl: http://localhost:8080/sell/pay/notify
+logging:
+  level:
+    com.su.model.mapper: trace

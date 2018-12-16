@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SellerServiceImplTest {
 
     private final String EMAIL = "1401538768@qq.com";

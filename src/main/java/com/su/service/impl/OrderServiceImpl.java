@@ -15,6 +15,7 @@ import com.su.repository.OrderMasterRepository;
 import com.su.service.OrderService;
 import com.su.service.PayService;
 import com.su.service.ProductService;
+import com.su.service.WebSocket;
 import com.su.utils.KeyUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +51,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private PayService payService;
 
+    @Autowired
+    private WebSocket webSocket;
+
     /** 添加事务管理 */
     @Override
     @Transactional
@@ -83,9 +87,9 @@ public class OrderServiceImpl implements OrderService {
         // 将订单主表的信息生成，并写入数据库
         OrderMaster orderMaster = new OrderMaster();
         // 注意：BeanUtils也会把null值拷贝到目标属性中，因此，如果使用BeanUtils做拷贝，应该放在设置其他属性之前
+        orderDTO.setOrderId(orderId);
+        orderDTO.setOrderAmount(orderAmount);
         BeanUtils.copyProperties(orderDTO, orderMaster);
-        orderMaster.setOrderId(orderId);
-        orderMaster.setOrderAmount(orderAmount);
 //        System.out.println(orderMaster.getOrderId());
         OrderMaster createOrderMaster = masterRepository.save(orderMaster);
 
@@ -94,6 +98,9 @@ public class OrderServiceImpl implements OrderService {
                 map(item -> new CartDTO(item.getProductId(), item.getProductQuantity())).
                 collect(Collectors.toList());
         productService.subStock(cartDTOList);
+
+        // 创建订单后发送websocket消息：将订单的id作为消息发送给前端
+        webSocket.sendMessage(orderDTO.getOrderId());
 
         return OrderMaster2OrderDTOConverter.convert(createOrderMaster);
     }

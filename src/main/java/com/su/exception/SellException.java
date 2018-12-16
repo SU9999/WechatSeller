@@ -1,7 +1,9 @@
 package com.su.exception;
 
 import com.su.enums.ResultStatusEnum;
+import lombok.Getter;
 
+@Getter
 public class SellException extends RuntimeException {
 
     private int code;
@@ -14,9 +16,5 @@ public class SellException extends RuntimeException {
     public SellException(int code, String message){
         super(message);
         this.code = code;
-    }
-
-    public Integer getCode(){
-        return code;
     }
 }
